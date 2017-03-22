@@ -237,7 +237,18 @@ $total_amount=0;
 								</select>
 								<script>jQuery('#treatment').chosen();</script>
 							</div>
+							<div class="col-md-2"></div>
+							<div class="col-md-4">
+								<label for="staff_id" style="display:block;text-align:left;">Staff</label>
+								<select id="staff_id" class="form-control" style="width:350px;" tabindex="4" name="staff_id">
+									<?php foreach ($staffs as $staff) { ?>
+										<option value="<?php echo $staff['id'] ?>"><?php echo $staff['staff_name']; ?></option>
+									<?php } ?>
+								</select>
+								<script>jQuery('#staff').chosen();</script>
+							</div>
 						</div>
+						
 						<?php } ?>
 						<?php if (in_array("prescription", $active_modules)) { ?>
 						
@@ -387,6 +398,7 @@ $total_amount=0;
 								<th style="width:250px;"><?php echo $this->lang->line('notes');?></th>
 								<th style="width:250px;">Patient Notes</th>
 								<th><?php echo $this->lang->line('doctor');?></th>
+								<!-- <th>Staff</th> -->
 								<?php if (in_array("gallery",$active_modules)) {?>
 								<th><?php echo $this->lang->line('progress');?></th>
 								<?php }?>
@@ -427,6 +439,7 @@ $total_amount=0;
 								?>
 								</td>
 								<td><?php echo $visit['name']; ?></td>
+								<!-- <td><?php //echo $this->staff_model->get_staffname($visit['bill_id']);?> -->
 								<?php if (in_array("gallery",$active_modules)) {?>
 								<td>
 									<a class="btn btn-primary square-btn-adjust" href="<?= site_url('gallery/index') ."/". $visit['patient_id'] ."/". $visit['visit_id']; ?>"><?php echo $this->lang->line('gallery');?></a>
@@ -468,12 +481,13 @@ $total_amount=0;
 							
 							<?php }else{ ?>
 								<tr>
-									<td colspan="9"><?php echo $this->lang->line('no_visits');?></td>
+									<td colspan="10"><?php echo $this->lang->line('no_visits');?></td>
 								</tr>
 							<?php } ?>
 							</tbody>
 							<tfoot>
 							<tr>
+								<th></th>
 								<th></th>
 								<th></th>
 								<th></th>

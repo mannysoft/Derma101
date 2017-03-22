@@ -8,6 +8,7 @@ class Patient extends CI_Controller {
         $this->load->model('patient_model');
 	    $this->load->model('settings/settings_model');
         $this->load->model('admin/admin_model');
+        $this->load->model('staff/staff_model');
         $this->load->model('appointment/appointment_model');
 		$this->load->model('module/module_model');
 		$this->load->model('payment/payment_model');
@@ -306,7 +307,7 @@ class Patient extends CI_Controller {
 			$data['visit_treatments'] = $this->patient_model->get_visit_treatments();
 			$data['currency_postfix'] = $this->settings_model->get_currency_postfix();
 			$data['visits'] = $this->patient_model->get_previous_visits($patient_id);
-			
+			$data['staffs'] = $this->staff_model->get_staffs();
 			$this->load->view('templates/header');
 			$this->load->view('templates/menu');
 			$this->load->view('visit', $data);

@@ -521,6 +521,7 @@ class Patient_model extends CI_Model {
 		$data['bill_time'] = date('H:i:s');
         $data['patient_id'] = $patient_id;
         $data['visit_id'] = $visit_id;
+        $data['staff_id'] = $this->input->post('staff_id');
         if($due_amount == NULL){
             $data['due_amount'] = 0.00;
         }else{
